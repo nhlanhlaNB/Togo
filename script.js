@@ -1,65 +1,78 @@
- // Initialize AOS animation
- AOS.init({
-    duration: 1200,
-    once: true
-});
+        // Initialize slide state
+        let currentLang = 'english';
+        let currentSlideIndex = 0;
+        const slides = {
+            english: [],
+            french: document.querySelectorAll('.french-slide')
+        };
 
-// State variables
-let currentLang = 'english'; // Default language
-let currentSlide = 1; // Current slide index
-const totalSlides = 3; // Total number of slides per language
+        // Generate English slides dynamically
+        function generateEnglishSlides() {
+            const container = document.getElementById('englishSlidesContainer');
+            
+            for (let i = 1; i <= 96; i++) {
+                const pageNum = i.toString().padStart(4, '0');
+                const slideNum = i + 1;
+                
+                const slideHTML = `
+                    <div class="slide english-slide">
+                        <div class="slide-caption">
+                            <h3>Slide ${slideNum}</h3>
+                        </div>
+                        <img src="slides/eng/Talk__ECOWAS_Togo_Day_1_page-${pageNum}.jpg" alt="Slide ${slideNum}" style="width: 70%; max-height: 350px; object-fit: contain; border-radius: 8px; margin: 0 auto 1rem; display: block; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    </div>
+                `;
+                
+                container.innerHTML += slideHTML;
+            }
+            
+            // Store references to the generated slides
+            slides.english = document.querySelectorAll('.english-slide');
+        }
 
-// Function to show slides based on selected language
-function showSlides(lang) {
-    currentLang = lang; // Update language
-    currentSlide = 1; // Reset to first slide
-    updateSlides(); // Update displayed slide
-}
+        // Show slides based on language
+        function showSlides(lang) {
+            currentLang = lang;
+            currentSlideIndex = 0;
+            updateSlides();
+        }
 
-// Function to update the displayed slide
-function updateSlides() {
-    // Hide all slides by removing 'active' class and setting display to none
-    document.querySelectorAll('.slide').forEach(slide => {
-        slide.classList.remove('active');
-        slide.style.display = 'none'; // Explicitly hide
-    });
+        // Update visible slide
+        function updateSlides() {
+            // Hide all slides
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Show current slide
+            if (slides[currentLang][currentSlideIndex]) {
+                slides[currentLang][currentSlideIndex].classList.add('active');
+            }
+        }
 
-    // Show the current slide by adding 'active' class and setting display to block
-    const slideId = `${currentLang}-slide-${currentSlide}`;
-    const slide = document.getElementById(slideId);
-    if (slide) {
-        slide.classList.add('active');
-        slide.style.display = 'block'; // Explicitly show
-    }
-}
+        // Navigation functions
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateSlides();
+            }
+        }
 
-// Function to navigate to the previous slide
-function prevSlide() {
-    if (currentSlide > 1) {
-        currentSlide--; // Decrement slide index
-        updateSlides(); // Update displayed slide
-    }
-}
+        function nextSlide() {
+            if (currentSlideIndex < slides[currentLang].length - 1) {
+                currentSlideIndex++;
+                updateSlides();
+            }
+        }
 
-// Function to navigate to the next slide
-function nextSlide() {
-    if (currentSlide < totalSlides) {
-        currentSlide++; // Increment slide index
-        updateSlides(); // Update displayed slide
-    }
-}
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
 
-// Toggle mobile menu
-function toggleMenu() {
-    const menu = document.getElementById('mobileMenu');
-    if (menu.style.display === 'none' || menu.style.display === '') {
-        menu.style.display = 'block';
-    } else {
-        menu.style.display = 'none';
-    }
-}
-
-// Initialize with English slides on page load
-document.addEventListener('DOMContentLoaded', () => {
-    updateSlides(); // Ensure the first slide is displayed on load
-});
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            generateEnglishSlides();
+            updateSlides();
+        });
