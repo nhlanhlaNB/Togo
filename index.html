@@ -4,307 +4,415 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Improving Statistics Using AI</title>
-    <!-- Bootstrap CSS (v5.3.3) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #0078d4;
+            --secondary-color: #333;
+            --accent-color: #ff6b35;
+            --light-bg: #f8f9fa;
+            --dark-text: #212529;
+            --light-text: #f8f9fa;
+        }
+        
         body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #e8ecef, #ced4da);
-            color: #333;
-            overflow-x: hidden;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 50px 20px;
-            text-align: center;
+        
+        /* Header Styles */
+        .main-header {
+            background: white;
+            color: var(--dark-text);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            border-bottom: 1px solid #e0e0e0;
         }
-        .header {
-            background: linear-gradient(to right, darkgoldenrod, #b8860b);
-            color: white;
-            padding: 40px;
-            border-radius: 16px;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+        .logo-container img {
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Main Content */
+        .main-container {
+            flex: 1;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            margin: 1.5rem auto;
+            width: 95%;
+            max-width: 1350px;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             position: relative;
-            overflow: hidden;
+            padding-bottom: 0.5rem;
         }
-        .header::before {
+        
+        .page-title::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        /* Enhanced Card Styles */
+        .analysis-card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .card-header-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #005a9c 100%);
+            color: white;
+            padding: 1.25rem 1.5rem;
+            border-bottom: none;
+        }
+        
+        /* Box Styles */
+        .box {
+            border: none;
+            border-radius: 8px;
+            padding: 1.5rem;
             width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
-            opacity: 0.5;
+            max-width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            background-color: white;
+            margin: 0 auto;
+            min-height: 200px;
         }
-        .header h1 {
-            margin: 0;
-            font-size: 3.5em;
-            font-weight: 700;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1;
+        
+        .hover-bg-white-10:hover {
+            background-color: rgba(255, 255, 255, 0.1);
         }
+        .hover-bg-primary-10:hover {
+            background-color: rgba(13, 110, 253, 0.1);
+        }
+        
+        /* Avatar Section */
         .avatar-section {
-            margin: 60px 0;
-            padding: 30px;
+            margin: 2rem 0;
+            padding: 2rem;
             background: white;
             border-radius: 16px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 2rem;
             flex-wrap: wrap;
         }
+        
         .togo-info {
             flex: 1;
             text-align: left;
             max-width: 500px;
         }
+        
         .togo-info h2 {
-            color: darkgoldenrod;
-            font-size: 2em;
+            color: var(--primary-color);
+            font-size: 1.8em;
             font-weight: 600;
-            margin-bottom: 15px;
-            border-bottom: 2px solid darkgoldenrod;
-            padding-bottom: 10px;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
         }
+        
         .togo-info p {
             font-size: 1.1em;
-            color: #444;
+            color: var(--secondary-color);
             line-height: 1.8;
         }
+        
         .video-container {
             flex: 1;
             max-width: 600px;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-            background: linear-gradient(to bottom, darkgoldenrod, #b8860b);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             padding: 12px;
             position: relative;
         }
-        .video-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 12px;
-            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
-            pointer-events: none;
-        }
+        
         .avatar-section video {
             width: 100%;
             height: auto;
-            border: 4px solid darkgoldenrod;
+            border: 4px solid var(--primary-color);
             border-radius: 12px;
             display: block;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
+        
         .avatar-section video:hover {
             transform: scale(1.03);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
         }
+        
+        /* Language Toggle */
         .language-toggle {
-            margin: 40px 0;
+            margin: 2rem 0;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 1rem;
         }
+        
         .language-toggle button {
-            padding: 12px;
-            width: 100px;
-            height: 50px;
-            font-size: 1.2em;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1em;
             font-weight: 500;
             border: none;
             border-radius: 4px;
-            background: darkgoldenrod;
+            background: var(--primary-color);
             color: white;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
         }
-        .language-toggle button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.4s ease, height 0.4s ease;
-        }
-        .language-toggle button:hover::before {
-            width: 200px;
-            height: 200px;
-        }
+        
         .language-toggle button:hover {
-            background: #b8860b;
-            transform: translateY(-3px);
+            background: #0062a3;
+            transform: translateY(-2px);
         }
+        
+        /* Slides Section */
         .slides-section {
             position: relative;
             max-width: 1000px;
             margin: 0 auto;
-            padding: 40px;
+            padding: 2rem;
             background: white;
             border-radius: 16px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease;
         }
+        
         .slides-section:hover {
             transform: translateY(-5px);
         }
+        
         .slide {
             display: none;
-            padding: 20px;
+            padding: 1rem;
             text-align: left;
             animation: fadeIn 0.5s ease-in-out;
         }
+        
         .slide.active {
             display: block;
         }
+        
         .slide h3 {
-            color: darkgoldenrod;
-            font-size: 2em;
+            color: var(--primary-color);
+            font-size: 1.5em;
             font-weight: 600;
-            margin-bottom: 15px;
-            border-left: 5px solid darkgoldenrod;
-            padding-left: 15px;
+            margin-bottom: 1rem;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 1rem;
         }
+        
         .slide p {
-            font-size: 1.2em;
-            line-height: 1.9;
-            color: #444;
-            margin-bottom: 20px;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
         }
+        
         .slide-nav {
             display: flex;
             justify-content: space-between;
-            margin-top: 30px;
+            margin-top: 2rem;
         }
+        
         .slide-nav button {
-            padding: 12px;
-            width: 120px;
-            height: 50px;
-            font-size: 1.2em;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1em;
             font-weight: 500;
             border: none;
             border-radius: 4px;
-            background: darkgoldenrod;
+            background: var(--primary-color);
             color: white;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
         }
-        .slide-nav button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.4s ease, height 0.4s ease;
-        }
-        .slide-nav button:hover::before {
-            width: 200px;
-            height: 200px;
-        }
+        
         .slide-nav button:hover {
-            background: #b8860b;
-            transform: translateY(-3px);
+            background: #0062a3;
+            transform: translateY(-2px);
         }
+        
+        /* Footer */
         .footer {
-            margin-top: 60px;
-            padding: 30px;
-            background: linear-gradient(to right, darkgoldenrod, #b8860b);
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #004e8c 100%);
             color: white;
             border-radius: 16px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            position: relative;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
+        
         .footer p {
             margin: 0;
-            font-size: 1.2em;
-            position: relative;
-            z-index: 1;
+            font-size: 1.1em;
         }
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
-            opacity: 0.5;
-        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
         @media (max-width: 992px) {
             .avatar-section {
                 flex-direction: column;
                 text-align: center;
             }
+            
             .togo-info {
                 max-width: 100%;
-                margin-bottom: 20px;
+                margin-bottom: 1.5rem;
             }
+            
             .video-container {
                 max-width: 100%;
             }
-            .header h1 {
-                font-size: 2.5em;
-            }
-            .slides-section {
-                padding: 20px;
-            }
+            
             .slide h3 {
-                font-size: 1.6em;
+                font-size: 1.3em;
             }
+            
             .slide p {
                 font-size: 1em;
             }
         }
+        
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
+            .main-container {
+                padding: 1rem;
             }
+            
+            .avatar-section {
+                padding: 1rem;
+            }
+            
+            .slides-section {
+                padding: 1rem;
+            }
+            
             .language-toggle button, .slide-nav button {
-                width: 90px;
-                height: 45px;
+                padding: 0.5rem 1rem;
                 font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
+    <!-- Header with Logos -->
+    <header class="main-header bg-white py-3">
+        <div class="container">
+            <div class="row align-items-center gx-3">
+                <!-- Left Logo -->
+                <div class="col-6 col-md-4">
+                    <div class="logo-container d-flex align-items-center h-100">
+                        <img src="assets/logo.png" 
+                             alt="Stats With AI Logo" 
+                             class="img-fluid" 
+                             style="max-height: 35px; width: auto;">
+                    </div>
+                </div>
+
+                <!-- Center Navigation (Desktop Only) -->
+                <div class="col-md-4 d-none d-md-block">
+                    <nav class="navbar navbar-expand justify-content-center p-0">
+                        <ul class="navbar-nav gap-3">
+                            <li class="nav-item">
+                                <a href="#home" class="nav-link text-dark px-2 py-1 rounded hover-bg-primary-10">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#about" class="nav-link text-dark px-2 py-1 rounded hover-bg-primary-10">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#slides" class="nav-link text-dark px-2 py-1 rounded hover-bg-primary-10">Findings</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Right Logo and Mobile Toggle -->
+                <div class="col-6 col-md-4">
+                    <div class="d-flex justify-content-end align-items-center h-100">
+                        <img src="https://via.placeholder.com/130x130?text=Partner+Logo" 
+                             alt="Partner Logo" 
+                             class="img-fluid d-none d-md-block me-3" 
+                             style="height: 130px; width: 130px;">
+                        
+                        <button class="navbar-toggler d-md-none p-0 border-0 shadow-none" 
+                                type="button" 
+                                onclick="toggleMenu()"
+                                aria-label="Toggle navigation">
+                            <i class="bi bi-list text-dark fs-3"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu (Hidden on Desktop) -->
+            <div id="mobileMenu" class="d-md-none collapse mt-3">
+                <div class="card shadow-sm">
+                    <div class="card-body p-2">
+                        <nav class="navbar navbar-light">
+                            <ul class="navbar-nav gap-1">
+                                <li class="nav-item">
+                                    <a href="#home" class="nav-link px-3 py-2 rounded hover-bg-primary-10">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#about" class="nav-link px-3 py-2 rounded hover-bg-primary-10">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#slides" class="nav-link px-3 py-2 rounded hover-bg-primary-10">Findings</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container" id="home">
+        <div class="page-title">
             <h1>Improving Statistics Using AI</h1>
         </div>
 
-        <div class="avatar-section">
+        <div class="avatar-section" id="about">
             <div class="togo-info">
                 <h2>About Togo</h2>
                 <p>Togo, officially the Togolese Republic, is a vibrant West African nation bordering Ghana, Benin, and Burkina Faso. Known for its rich cultural heritage, Togo boasts diverse ethnic groups, lively markets, and traditional festivals. Its capital, Lomé, is a bustling coastal city with a thriving port, pivotal to the region's logistics. Togo's economy is driven by agriculture, phosphate mining, and trade, making it a key player in the SADC region's infrastructure development. This project highlights Togo's role in leveraging AI to enhance statistical analysis for logistics improvements.</p>
@@ -321,7 +429,7 @@
             <button class="btn btn-primary" onclick="showSlides('french')">French</button>
         </div>
 
-        <div class="slides-section" id="slides-section">
+        <div class="slides-section" id="slides">
             <!-- English Slides -->
             <div class="slide english-slide" id="english-slide-1">
                 <h3>Slide 1: Project Overview</h3>
@@ -355,16 +463,20 @@
                 <button class="btn btn-primary" onclick="nextSlide()">Next</button>
             </div>
         </div>
+    </main>
 
-        <div class="footer">
-            <p>Contact us for more information: info@statswithai.org</p>
-        </div>
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Contact us for more information: info@statswithai.org</p>
+    </footer>
 
-    <!-- Bootstrap JS and Popper.js (v5.3.3) -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <!-- Inline JavaScript -->
-     <script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="script.js">
+       
+    </script>
 </body>
 </html>

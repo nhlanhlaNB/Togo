@@ -1,3 +1,9 @@
+ // Initialize AOS animation
+ AOS.init({
+    duration: 1200,
+    once: true
+});
+
 // State variables
 let currentLang = 'english'; // Default language
 let currentSlide = 1; // Current slide index
@@ -40,6 +46,16 @@ function nextSlide() {
     if (currentSlide < totalSlides) {
         currentSlide++; // Increment slide index
         updateSlides(); // Update displayed slide
+    }
+}
+
+// Toggle mobile menu
+function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    if (menu.style.display === 'none' || menu.style.display === '') {
+        menu.style.display = 'block';
+    } else {
+        menu.style.display = 'none';
     }
 }
 
