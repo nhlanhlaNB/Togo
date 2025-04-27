@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improving Statistics Using AI</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .header {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .avatar-section {
+            margin: 40px 0;
+        }
+        .avatar-section video {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 5px solid #0056b3;
+        }
+        .language-toggle {
+            margin: 20px 0;
+        }
+        .language-toggle button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #0056b3;
+            color: white;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+        .language-toggle button:hover {
+            background-color: #003d82;
+        }
+        .slides-section {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .slide {
+            display: none;
+            padding: 20px;
+            text-align: left;
+        }
+        .slide.active {
+            display: block;
+        }
+        .slide h3 {
+            color: #0056b3;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .slide p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .slide-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .slide-nav button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #0056b3;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .slide-nav button:hover {
+            background-color: #003d82;
+        }
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #0056b3;
+            color: white;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Improving Statistics Using AI</h1>
+        </div>
+
+        <div class="avatar-section">
+            <video src="avatar-explaining-video.mp4" controls poster="avatar-placeholder.jpg">
+                Your browser does not support the video tag.
+            </video>
+            <p>An avatar explains how AI enhances statistical analysis, with a case study on logistics infrastructure in the SADC region.</p>
+        </div>
+
+        <div class="language-toggle">
+            <button onclick="showSlides('english')">English</button>
+            <button onclick="showSlides('french')">French</button>
+        </div>
+
+        <div class="slides-section" id="slides-section">
+            <!-- English Slides -->
+            <div class="slide english-slide" id="english-slide-1">
+                <h3>Slide 1: Project Overview</h3>
+                <p>This project demonstrates how AI improves statistical analysis, using a case study on logistics infrastructure in the SADC region (2007–2023). AI-driven tools enabled the use of the IV-GMM model to address endogeneity in panel data.</p>
+            </div>
+            <div class="slide english-slide" id="english-slide-2">
+                <h3>Slide 2: Key Finding - Infrastructure Impact</h3>
+                <p>AI-enhanced modeling revealed that a one-unit increase in the Logistics Performance Index (LPI_Infrastructure) boosts GDP growth by 7.25 percentage points (p = 0.0002), showcasing the power of AI in uncovering significant relationships.</p>
+            </div>
+            <div class="slide english-slide" id="english-slide-3">
+                <h3>Slide 3: Nuanced Insights with AI</h3>
+                <p>AI helped identify diminishing returns in infrastructure quality (LPI_Infrastructure_Squared: -1.965, p = 0.0067), with an inflection point at 1.85, providing deeper insights into optimal investment strategies.</p>
+            </div>
+
+            <!-- French Slides -->
+            <div class="slide french-slide" id="french-slide-1">
+                <h3>Diapositive 1 : Aperçu du projet</h3>
+                <p>Ce projet montre comment l'IA améliore l'analyse statistique, à travers une étude de cas sur l'infrastructure logistique dans la région SADC (2007–2023). Les outils basés sur l'IA ont permis l'utilisation du modèle IV-GMM pour traiter l'endogénéité dans les données de panel.</p>
+            </div>
+            <div class="slide french-slide" id="french-slide-2">
+                <h3>Diapositive 2 : Résultat clé - Impact de l'infrastructure</h3>
+                <p>La modélisation améliorée par l'IA a révélé qu'une augmentation d'une unité de l'indice de performance logistique (LPI_Infrastructure) augmente la croissance du PIB de 7,25 points de pourcentage (p = 0,0002), démontrant la puissance de l'IA pour révéler des relations significatives.</p>
+            </div>
+            <div class="slide french-slide" id="french-slide-3">
+                <h3>Diapositive 3 : Perspectives nuancées grâce à l'IA</h3>
+                <p>L'IA a permis d'identifier des rendements décroissants dans la qualité de l'infrastructure (LPI_Infrastructure_Squared : -1,965, p = 0,0067), avec un point d'inflexion à 1,85, offrant des perspectives plus approfondies sur les stratégies d'investissement optimales.</p>
+            </div>
+
+            <div class="slide-nav">
+                <button onclick="prevSlide()">Previous</button>
+                <button onclick="nextSlide()">Next</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Contact us for more information: info@statswithai.org</p>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'english';
+        let currentSlide = 1;
+        const totalSlides = 3;
+
+        function showSlides(lang) {
+            currentLang = lang;
+            currentSlide = 1;
+            updateSlides();
+        }
+
+        function updateSlides() {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            const slideId = `${currentLang}-slide-${currentSlide}`;
+            const slide = document.getElementById(slideId);
+            if (slide) {
+                slide.classList.add('active');
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlides();
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlides();
+            }
+        }
+
+        // Initialize with English slides
+        showSlides('english');
+    </script>
+</body>
+</html>
