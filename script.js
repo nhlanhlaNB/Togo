@@ -44,7 +44,7 @@ function generateSlides() {
                 <div class="slide-caption">
                     <h3>Diapositive ${slideNum}</h3>
                 </div>
-                <img src="slides2/fra/Talk__ECOWAS_Togo_Day_1_French-images-${slideNum}.jpg"
+                <img src="slides2/Talk__ECOWAS_Togo_Day_1_French-images-${slideNum}.jpg"
                      alt="Diapositive ${slideNum}" 
                      class="slide-image">
             </div>

@@ -25,14 +25,47 @@ body {
     border-bottom: 1px solid #e0e0e0;
 }
 
+.logo-container {
+    flex-shrink: 0; /* Prevent logo from shrinking too much */
+}
+
 .logo-container img {
-    height: 50px;
+    max-height: 5rem; /* Base height for larger screens */
+    max-width: 100%; /* Ensure it doesn't overflow container */
+    height: auto; /* Maintain aspect ratio */
     transition: all 0.3s ease;
 }
 
 .logo-container img:hover {
     transform: scale(1.05);
 }
+
+.logo-text {
+    font-size: clamp(1rem, 2.5vw, 1.25rem); /* Responsive text size */
+    white-space: nowrap; /* Prevent text wrapping on medium screens */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-container img {
+        max-height: 3rem; /* Smaller height on mobile */
+    }
+    
+    .logo-text {
+        font-size: clamp(0.875rem, 2vw, 1rem); /* Smaller text on mobile */
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-container img {
+        max-height: 2.5rem; /* Even smaller for very small screens */
+    }
+    
+    .logo-text {
+        font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+    }
+}
+
 
 /* Main Content */
 .main-container {
@@ -304,3 +337,4 @@ body {
         font-size: 1em;
     }
 }
+
