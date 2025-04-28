@@ -11,10 +11,15 @@ function generateSlides() {
     const englishContainer = document.getElementById('englishSlidesContainer');
     const frenchContainer = document.getElementById('frenchSlidesContainer');
     
+    if (!englishContainer || !frenchContainer) {
+        console.error('Slide containers not found');
+        return;
+    }
+    
     // Generate English slides (1-96)
     for (let i = 1; i <= 96; i++) {
         const pageNum = i.toString().padStart(4, '0');
-        const slideNum = i + 1;
+        const slideNum = i;
         
         const slideHTML = `
             <div class="slide english-slide">
@@ -32,7 +37,7 @@ function generateSlides() {
     // Generate French slides (1-96)
     for (let i = 1; i <= 96; i++) {
         const pageNum = i.toString().padStart(4, '0');
-        const slideNum = i + 1;
+        const slideNum = i;
         
         const slideHTML = `
             <div class="slide french-slide">
@@ -47,9 +52,10 @@ function generateSlides() {
         frenchContainer.innerHTML += slideHTML;
     }
     
-    // Store references to the generated slides
     slides.english = document.querySelectorAll('.english-slide');
     slides.french = document.querySelectorAll('.french-slide');
+    console.log('English slides:', slides.english.length);
+    console.log('French slides:', slides.french.length);
 }
 
 // Update button text based on language
@@ -57,12 +63,14 @@ function updateButtonText() {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     
-    if (currentLang === 'french') {
-        prevBtn.textContent = 'Précédent';
-        nextBtn.textContent = 'Suivant';
-    } else {
-        prevBtn.textContent = 'Previous';
-        nextBtn.textContent = 'Next';
+    if (prevBtn && nextBtn) {
+        if (currentLang === 'french') {
+            prevBtn.textContent = 'Précédent';
+            nextBtn.textContent = 'Suivant';
+        } else {
+            prevBtn.textContent = 'Previous';
+            nextBtn.textContent = 'Next';
+        }
     }
 }
 
@@ -76,12 +84,10 @@ function showSlides(lang) {
 
 // Update visible slide
 function updateSlides() {
-    // Hide all slides
     document.querySelectorAll('.slide').forEach(slide => {
         slide.classList.remove('active');
     });
     
-    // Show current slide
     if (slides[currentLang][currentSlideIndex]) {
         slides[currentLang][currentSlideIndex].classList.add('active');
     }
@@ -105,7 +111,7 @@ function nextSlide() {
 // Mobile menu toggle
 function toggleMenu() {
     const menu = document.getElementById('mobileMenu');
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    menu.classList.toggle('show'); // Use Bootstrap's collapse class
 }
 
 // Initialize on load
