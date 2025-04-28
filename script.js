@@ -23,12 +23,12 @@ function generateSlides() {
         
         const slideHTML = `
             <div class="slide english-slide">
-                <img src="slides/eng/Talk__ECOWAS_Togo_Day_1_page-${pageNum}.jpg" 
-                     alt="Slide ${slideNum}" 
-                     class="slide-image">
                 <div class="slide-caption">
                     <h3>Slide ${slideNum}</h3>
                 </div>
+                <img src="slides/eng/Talk__ECOWAS_Togo_Day_1_page-${pageNum}.jpg" 
+                     alt="Slide ${slideNum}" 
+                     class="slide-image">
             </div>
         `;
         englishContainer.innerHTML += slideHTML;
@@ -36,17 +36,17 @@ function generateSlides() {
     
     // Generate French slides (1-96)
     for (let i = 1; i <= 96; i++) {
-        const pageNum = i.toString().padStart(4, '0'); 
-        const slideNum = i - 1; 
+        const pageNum = i.toString().padStart(4, '0');
+        const slideNum = i - 1;
         
         const slideHTML = `
             <div class="slide french-slide">
-                <img src="slides2/fra/Talk__ECOWAS_Togo_Day_1_French-images-${slideNum}.jpg"
-                     alt="Diapositive ${slideNum}" 
-                     class="slide-image">
                 <div class="slide-caption">
                     <h3>Diapositive ${slideNum}</h3>
                 </div>
+                <img src="slides2/fra/Talk__ECOWAS_Togo_Day_1_French-images-${slideNum}.jpg"
+                     alt="Diapositive ${slideNum}" 
+                     class="slide-image">
             </div>
         `;
         frenchContainer.innerHTML += slideHTML;
@@ -89,7 +89,10 @@ function updateSlides() {
     });
     
     if (slides[currentLang][currentSlideIndex]) {
+        console.log(`Showing ${currentLang} slide ${currentSlideIndex + 1}`);
         slides[currentLang][currentSlideIndex].classList.add('active');
+    } else {
+        console.error(`No slide found for ${currentLang} at index ${currentSlideIndex}`);
     }
 }
 
@@ -111,7 +114,7 @@ function nextSlide() {
 // Mobile menu toggle
 function toggleMenu() {
     const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('show'); // Use Bootstrap's collapse class
+    menu.classList.toggle('show');
 }
 
 // Initialize on load
