@@ -197,6 +197,12 @@ body {
     justify-content: space-between;
     margin-top: 2rem;
 }
+.nav-link {
+    color: black !important; /* Sets the nav button text color to black */
+}
+.nav-link:hover {
+    color: #333 !important; /* Optional: Slightly darker shade on hover for better UX */
+}
 
 .slide-nav button {
     padding: 0.75rem 1.5rem;
