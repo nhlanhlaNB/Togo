@@ -275,6 +275,7 @@ body {
 }
 
 /* Footer */
+/* Footer */
 .footer {
     margin-top: 3rem;
     padding: 2rem;
@@ -290,12 +291,13 @@ body {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    gap: 1rem; /* Add spacing between elements */
 }
 
 .footer-logo-left,
 .footer-logo-right {
-    width: 80px; /* adjust size if needed */
-    height: auto;
+    width: clamp(60px, 10vw, 80px); /* Responsive width between 60px and 80px */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .footer-text {
@@ -303,11 +305,69 @@ body {
     flex-grow: 1;
 }
 
-.footer p {
+.footer-text p {
     margin: 0;
-    font-size: 1.1em;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Responsive font size */
 }
 
+/* Responsive adjustments for medium screens */
+@media (max-width: 992px) {
+    .footer {
+        padding: 1.5rem;
+    }
+
+    .footer-logo-left,
+    .footer-logo-right {
+        width: clamp(50px, 8vw, 70px); /* Slightly smaller logos */
+    }
+
+    .footer-text p {
+        font-size: clamp(0.85rem, 2.3vw, 1rem);
+    }
+}
+
+/* Center logos and text on mobile */
+@media (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
+        text-align: center; /* Center text */
+    }
+
+    .footer-logo-left,
+    .footer-logo-right {
+        width: clamp(40px, 12vw, 60px); /* Smaller logos for mobile */
+        margin: 0.5rem 0; /* Vertical spacing */
+    }
+
+    .footer-text {
+        margin: 0.5rem 0; /* Vertical spacing */
+    }
+
+    .footer-text p {
+        font-size: clamp(0.8rem, 2vw, 0.9rem); /* Smaller text for mobile */
+    }
+
+    .footer {
+        padding: 1rem; /* Reduced padding for smaller screens */
+    }
+}
+
+/* Extra small screens (e.g., very small phones) */
+@media (max-width: 576px) {
+    .footer-logo-left,
+    .footer-logo-right {
+        width: clamp(30px, 10vw, 50px); /* Even smaller logos */
+    }
+
+    .footer-text p {
+        font-size: clamp(0.75rem, 1.8vw, 0.85rem); /* Tiny text for very small screens */
+    }
+
+    .footer {
+        padding: 0.75rem;
+    }
+}
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
