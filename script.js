@@ -36,7 +36,7 @@ function generateSlides() {
         
         const slideHTML = `
             <div class="slide french-slide">
-                <img src="slides/fra/Talk__ECOWAS_Togo_Day_1_French-images-${pageNum}.jpg" 
+                <img src="slides2/fra/Talk__ECOWAS_Togo_Day_1_French-images-${slideNum}.jpg"
                      alt="Diapositive ${slideNum}" 
                      class="slide-image">
                 <div class="slide-caption">
