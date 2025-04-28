@@ -284,11 +284,30 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
+/* Arrange logos and text */
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-logo-left,
+.footer-logo-right {
+    width: 80px; /* adjust size if needed */
+    height: auto;
+}
+
+.footer-text {
+    text-align: center;
+    flex-grow: 1;
+}
+
 .footer p {
     margin: 0;
     font-size: 1.1em;
-    text-align: center;
 }
+
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
