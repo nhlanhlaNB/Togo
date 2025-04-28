@@ -18,7 +18,7 @@ function generateSlides() {
     }
     
     // Generate English slides (1-96)
-    for (let i = 1; i <= 96; i++) {
+    for (let i = 1; i <= 93; i++) {
         const pageNum = i.toString().padStart(4, '0'); 
         const slideNum = i;
         
@@ -36,7 +36,7 @@ function generateSlides() {
     }
     
     // Generate French slides (1-96)
-    for (let i = 1; i <= 96; i++) {
+    for (let i = 1; i <= 93; i++) {
         const pageNum = i.toString().padStart(4, '0'); 
         const slideNum = i;
         
