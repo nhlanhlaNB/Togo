@@ -36,8 +36,8 @@ function generateSlides() {
     
     // Generate French slides (1-96)
     for (let i = 1; i <= 96; i++) {
-        const pageNum = i.toString().padStart(4, '0');
-        const slideNum = i;
+        const pageNum = i.toString().padStart(4, '0'); 
+        const slideNum = i - 1; 
         
         const slideHTML = `
             <div class="slide french-slide">
