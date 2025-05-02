@@ -43,49 +43,64 @@ async function sendMessage() {
     chatBody.appendChild(typingIndicator);
     chatBody.scrollTop = chatBody.scrollHeight;
 
-    try {
-        const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer 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`, // Replace with your actual OpenRouter API key
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                model: 'meta-llama/llama-3.1-8b-instruct:free',
-                messages: [
-                    { role: 'system', content: `
+    // Define multiple models and API keys
+    const modelsAndKeys = [
+        { model: 'meta-llama/llama-3.1-8b-instruct:free', apiKey: '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' },
+        { model: 'mistralai/mixtral-8x7b-instruct', apiKey: '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' },
+        { model: 'xai/grok-1', apiKey: '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' },
+    ];
+
+    let errorMessage = '';
+
+    for (const { model, apiKey } of modelsAndKeys) {
+        try {
+            const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    model: model,
+                    messages: [
+                        { role: 'system', content: `
 You are a helpful assistant specializing in Ecowas framework. You must answer questions based solely on the provided context from a 70-page PDF research document. The context is as follows:
 
 ${combinedContext}
 
 If a user's question is off-topic (i.e., not related to Ecowas Framework), do not answer the question. Instead, politely inform the user that the question is off-topic and suggest relevant questions they can ask about Ecowas Big Data framework. For example, you might suggest: "How to improve statistics using big data and AI?"
 `},
-                    { role: 'user', content: question },
-                ],
-                max_tokens: 500,
-                temperature: 0.7,
-            }),
-        });
+                        { role: 'user', content: question },
+                    ],
+                    max_tokens: 500,
+                    temperature: 0.7,
+                }),
+            });
 
-        typingIndicator.remove();
+            typingIndicator.remove();
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            if (!response.ok) {
+                errorMessage += `Model ${model} failed with status ${response.status}. `;
+                continue; // Try the next model/key pair
+            }
+
+            const data = await response.json();
+            const botMessage = document.createElement('div');
+            botMessage.className = 'chat-message bot-message';
+            botMessage.innerHTML = formatBotResponse(data.choices[0].message.content.trim());
+            chatBody.appendChild(botMessage);
+            return; // Exit the loop on success
+        } catch (error) {
+            errorMessage += `Model ${model} error: ${error.message}. `;
         }
-
-        const data = await response.json();
-        const botMessage = document.createElement('div');
-        botMessage.className = 'chat-message bot-message';
-        botMessage.innerHTML = formatBotResponse(data.choices[0].message.content.trim());
-        chatBody.appendChild(botMessage);
-    } catch (error) {
-        typingIndicator.remove();
-        const botMessage = document.createElement('div');
-        botMessage.className = 'chat-message bot-message';
-        botMessage.textContent = `Error: Failed to get a response from the API. ${error.message}. Please check your API key or try again later.`;
-        chatBody.appendChild(botMessage);
     }
 
+    // If all attempts fail
+    typingIndicator.remove();
+    const botMessage = document.createElement('div');
+    botMessage.className = 'chat-message bot-message';
+    botMessage.textContent = `Error: Failed to get a response from the API. ${errorMessage}Please check your API keys or try again later.`;
+    chatBody.appendChild(botMessage);
     chatBody.scrollTop = chatBody.scrollHeight;
 }
 
