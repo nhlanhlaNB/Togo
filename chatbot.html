@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecowas Big Data Chatbot</title>
+    <title>ECOWAS Big Data Framework Chatbot</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -27,6 +27,7 @@
             min-height: 100vh;
         }
 
+        /* Header Styles */
         .main-header {
             background: white;
             color: var(--dark-text);
@@ -48,48 +49,7 @@
             color: var(--dark-text);
         }
 
-        .dropdown-group {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .dropdown-toggle {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .dropdown-toggle:hover {
-            background-color: #0062a3;
-        }
-
-        .chatbot-link {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .dropdown-group {
-                flex-direction: column;
-                width: 100%;
-                margin-top: 1rem;
-            }
-
-            .dropdown-group .dropdown {
-                width: 100%;
-            }
-
-            .dropdown-group .dropdown-menu {
-                width: 100%;
-            }
-
-            .dropdown-toggle {
-                width: 100%;
-                text-align: left;
-                margin-bottom: 0.5rem;
-            }
-        }
-
+        /* Main Content */
         .main-container {
             flex: 1;
             padding: 2rem;
@@ -120,6 +80,7 @@
             border-radius: 2px;
         }
 
+        /* Chatbot Styles */
         .chat-container {
             border: none;
             border-radius: 12px;
@@ -163,6 +124,7 @@
             position: relative;
         }
 
+        /* Improved Bot Message Formatting */
         .bot-message ul {
             padding-left: 20px;
             margin: 5px 0;
@@ -176,6 +138,7 @@
             color: var(--primary-color);
         }
 
+        /* Typing Indicator */
         .typing-indicator {
             display: flex;
             align-items: center;
@@ -211,31 +174,7 @@
             }
         }
 
-        .footer {
-            background-color: #f8f9fa;
-            padding: 1rem 0;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .footer-logo-left,
-        .footer-logo-right {
-            height: 40px;
-        }
-
-        .footer-text {
-            text-align: center;
-            color: var(--dark-text);
-        }
-
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
             .chat-body {
                 height: 300px;
@@ -243,11 +182,6 @@
 
             .chat-message {
                 max-width: 85%;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
             }
         }
     </style>
@@ -259,18 +193,19 @@
             <div class="row align-items-center gx-3">
                 <div class="col-6 col-md-4 d-flex align-items-center">
                     <div class="logo-container me-2">
-                        <img src="assets/logo.png" alt="Stats With AI Logo" class="img-fluid" style="max-height: 50px;">
+                        <img src="assets/logo.png" alt="ECOWAS Logo" class="img-fluid" style="max-height: 50px;">
                     </div>
                     <div class="logo-text fw-bold fs-5">
-                        Big Data Ecowas
+                        ECOWAS Big Data Framework
                     </div>
                 </div>
                 <div class="col-md-4 d-none d-md-block text-center">
+                    <!-- Desktop navigation, centered -->
                     <nav class="navbar navbar-light">
                         <ul class="navbar-nav d-flex flex-row justify-content-center gap-3">
                             <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                             <li class="nav-item"><a href="index.html" class="nav-link">About</a></li>
-                            <li class="nav-item"><a href="index.html" class="nav-link">Findings</a></li>
+                            <li class="nav-item"><a href="index.html" class="nav-link">Framework</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -280,14 +215,16 @@
                     </button>
                 </div>
             </div>
+    
+            <!-- Mobile Menu -->
             <div id="mobileMenu" class="d-md-none collapse mt-3">
                 <div class="card shadow-sm">
                     <div class="card-body p-2">
                         <nav class="navbar navbar-light">
                             <ul class="navbar-nav gap-1">
-                                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                                <li class="nav-item"><a href="#slides" class="nav-link">Findings</a></li>
+                                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                                <li class="nav-item"><a href="index.html" class="nav-link">About</a></li>
+                                <li class="nav-item"><a href="index.html" class="nav-link">Framework</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -295,17 +232,23 @@
             </div>
         </div>
     </header>
+    
 
+    <!-- Main Content -->
     <main class="container main-container">
-        <h1 class="page-title">Ecowas Big Data Chatbot</h1>
+        <h1 class="page-title">ECOWAS Big Data Framework Chatbot</h1>
         <p class="lead">
-            Ask questions about improving statistics using big data and AI.
+            Ask questions about the ECOWAS Big Data Framework, its components, implementation strategies, and how it applies to West African development.
         </p>
+
+        <!-- Chatbot Container -->
         <div class="chat-container">
-            <div class="chat-body" id="chatBody"></div>
+            <div class="chat-body" id="chatBody">
+                <!-- Messages will be loaded dynamically -->
+            </div>
             <div class="chat-footer">
                 <div class="input-group">
-                    <input type="text" id="userInput" class="form-control" placeholder="Type your question..." onkeypress="if(event.key === 'Enter') sendMessage();">
+                    <input type="text" id="userInput" class="form-control" placeholder="Type your question..." onkeypress="if(event.keyCode === 13) sendMessage();">
                     <button class="btn btn-primary" onclick="sendMessage()"><i class="bi bi-send me-1"></i>Send</button>
                 </div>
             </div>
@@ -313,17 +256,195 @@
     </main>
 
     <footer class="footer">
-        <div class="footer-bottom">
-            <img src="assets/Logo1f.png" alt="World Bank Logo" class="footer-logo-left">
-            <div class="footer-text">
-                <p>Supported by World Bank</p>
-                <p>& Ecowas © 2025. All rights reserved.</p>
-            </div>
-            <img src="assets/Logo2f.png" alt="Ecowas Logo" class="footer-logo-right">
+      <div class="footer-bottom">
+        <img src="assets/Logo1f.png" alt="ECOWAS Logo" class="footer-logo-left">
+        <div class="footer-text">
+          <p>ECOWAS Big Data Framework</p>
+          <p>&copy; 2025. All rights reserved.</p>
         </div>
+        <img src="assets/Logo2f.png" alt="World Bank Logo" class="footer-logo-right">
+      </div>
     </footer>
 
+    <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="chatbot.js"></script>
+    <!-- Chatbot JavaScript -->
+    <script>
+        // Context for the ECOWAS Big Data Framework chatbot
+        const ecowasContext = `
+        [ECOWAS Big Data Framework Document]: This is a comprehensive 70-page document titled "A Framework for Big Data Applications for ECOWAS" from the Experience-Sharing Workshop on Big Data Applications Across ECOWAS Member States held April 28 - May 3, 2025. The framework was authored by Professor Abejide Ade-Ibijola (PhD Wits), Professor of Artificial Intelligence and Applications, and ECOWAS Resource Person.
+
+        Key components of the framework:
+        1. Regional Vision and Strategic Alignment
+        2. Readiness and Capability Assessment
+        3. Use Case Prioritization with Regional Relevance
+        4. Technology and Infrastructure Development
+        5. Governance, Legal, Data Security, and Ethical Frameworks
+        6. Pilot Implementation and Regional Scaling
+        7. Sustainability, Monitoring, and Innovation
+
+        The framework aligns with ECOWAS Vision 2050 and focuses on improving statistics using big data and AI, including data collection methods, AI-driven analysis, and statistical enhancements for ECOWAS member states.
+
+        Important definitions:
+        - Big Data: Extremely large datasets that require advanced tools to capture, process, and analyze
+        - AI: Artificial Intelligence - technologies enabling machines to perform human-like tasks
+        - CDR: Call Detail Records - metadata from telecom operators about phone calls/messages
+        - NSO: National Statistics Office - government agency responsible for official statistics
+        - MNO: Mobile Network Operator - telecom service providers like MTN, Orange
+
+        The framework emphasizes:
+        - Regional collaboration among ECOWAS member states
+        - Ethical use of data with strong governance
+        - Capacity building and infrastructure development
+        - Practical applications in health, agriculture, urban planning, etc.
+        - Public-private partnerships with telecom operators
+
+        If asked about unrelated topics, politely explain that you specialize in the ECOWAS Big Data Framework and suggest relevant questions about the framework's components or implementation.
+        `.trim();
+
+        // List of models to try in order
+        const models = [
+            'google/gemini-2.0-flash-exp:free',
+            'deepseek/deepseek-r1',   
+            'nvidia/nvidia-chat-v1',    
+            'meta-llama/llama-4-maverick:free',
+            'deepseek/deepseek-chat-v3-0324:free',
+            'meta-llama/llama-3-8b-instruct',     
+            'mistralai/mistral-small-3.1-24b-instruct:free',
+            'google/gemma-3-27b-it'
+        ];
+
+        // Load initial message when the page loads
+        window.onload = function() {
+            const chatBody = document.getElementById('chatBody');
+            const initialMessage = document.createElement('div');
+            initialMessage.className = 'chat-message bot-message';
+            initialMessage.innerHTML = `
+                <strong>Welcome to the ECOWAS Big Data Framework Chatbot!</strong><br><br>
+                I can answer questions about:<br>
+                • The 7 components of the ECOWAS Big Data Framework<br>
+                • Implementation strategies for member states<br>
+                • Case studies and applications<br>
+                • Governance and ethical considerations<br>
+                • Technical infrastructure requirements<br><br>
+                Try asking: "What are the key components of the framework?" or "How can mobile network operators participate?"
+            `;
+            chatBody.appendChild(initialMessage);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        };
+
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('collapse');
+        }
+
+        // Function to format the bot's response for better readability
+        function formatBotResponse(responseText) {
+            let formattedText = responseText;
+
+            // Replace numbered list items (e.g., "1. Item") with proper HTML list
+            const listRegex = /(\d+\.\s+)([^\n]+)/g;
+            if (listRegex.test(formattedText)) {
+                formattedText = formattedText.replace(listRegex, (match, number, item) => {
+                    return `<li>${item.trim()}</li>`;
+                });
+                formattedText = `<ul>${formattedText}</ul>`;
+            }
+
+            // Replace double asterisks for bold text (e.g., **text**)
+            formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+            // Replace newlines with <br> for proper spacing
+            formattedText = formattedText.replace(/\n/g, '<br>');
+
+            return formattedText;
+        }
+
+        async function sendMessage() {
+            const inputElement = document.getElementById('userInput');
+            const chatBody = document.getElementById('chatBody');
+            const question = inputElement.value.trim();
+
+            if (!question) {
+                alert('Please enter a question.');
+                return;
+            }
+
+            // Display user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'chat-message user-message';
+            userMessage.textContent = question;
+            chatBody.appendChild(userMessage);
+            inputElement.value = ''; // Clear input
+
+            // Scroll to bottom
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Show typing indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'typing-indicator';
+            typingIndicator.innerHTML = '<span></span><span></span><span></span>';
+            chatBody.appendChild(typingIndicator);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Try multiple models if needed
+            let lastError = null;
+            for (const model of models) {
+                try {
+                    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer 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', // Replace with your actual API key
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            model,
+                            messages: [
+                                { 
+                                    role: 'system', 
+                                    content: `You are a helpful assistant specializing in the ECOWAS Big Data Framework. You must answer questions based on the provided context from the 70-page framework document. Context: ${ecowasContext}`
+                                },
+                                { role: 'user', content: question }
+                            ],
+                            max_tokens: 1000,
+                            temperature: 0.7,
+                        }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    
+                    // Remove typing indicator
+                    typingIndicator.remove();
+
+                    // Display bot response
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'chat-message bot-message';
+                    botMessage.innerHTML = formatBotResponse(data.choices[0].message.content.trim());
+                    chatBody.appendChild(botMessage);
+                    
+                    // Scroll to bottom
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                    
+                    return; // Success - exit the loop
+                } catch (error) {
+                    lastError = error;
+                    console.error(`Error with model ${model}:`, error);
+                    // Continue to next model
+                }
+            }
+
+            // If all models failed
+            typingIndicator.remove();
+            const botMessage = document.createElement('div');
+            botMessage.className = 'chat-message bot-message';
+            botMessage.textContent = `Sorry, I couldn't process your request. ${lastError ? lastError.message : 'Please try again later.'}`;
+            chatBody.appendChild(botMessage);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    </script>
 </body>
 </html>
