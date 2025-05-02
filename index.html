@@ -12,6 +12,568 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+
+<style>
+    :root {
+      --ecowas-gold: hsl(43, 89%, 38%);
+      --ecowas-navy: hsl(210, 73%, 28%);
+      --ecowas-dark: hsl(222.2, 84%, 4.9%);
+      --background: hsl(0, 0%, 100%);
+      --foreground: hsl(222.2, 84%, 4.9%);
+      --gray-50: hsl(210, 40%, 98%);
+      --gray-100: hsl(210, 40%, 96.1%);
+      --gray-200: hsl(210, 40%, 93.5%);
+      --gray-500: hsl(210, 20%, 50%);
+      --gray-700: hsl(210, 20%, 30%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    h1, h2, h3 {
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 1.875rem;
+      line-height: 1.3;
+    }
+
+    p {
+      font-size: 1.125rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Container */
+    .ecowas-container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .ecowas-container {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .ecowas-container {
+        padding: 2rem;
+      }
+      h1 {
+        font-size: 3rem;
+      }
+      h2 {
+        font-size: 2.25rem;
+      }
+    }
+
+    /* Header */
+    .header {
+        position: fixed;
+      background-color: var(--background);
+      padding: 1rem 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header .content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .header .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .header .logo {
+      max-height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .header .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .header .logo-text {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--ecowas-dark);
+    }
+
+    .header nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .header nav a {
+      color: var(--ecowas-dark);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .header nav a:hover {
+      color: var(--ecowas-gold);
+    }
+
+    @media (max-width: 768px) {
+      .header nav {
+        display: none;
+      }
+      .header .logo {
+        max-height: 40px;
+      }
+      .header .logo-text {
+        font-size: 1rem;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      background-color: var(--background);
+      padding: 3rem 0;
+    }
+
+    .hero h1 {
+      color: var(--ecowas-gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero .underline {
+      height: 0.0625rem;
+      width: 5rem;
+      background-color: var(--ecowas-dark);
+      margin-bottom: 0.2rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* About Section */
+    .about {
+      background-color: var(--gray-50);
+      padding: 2.5rem 0;
+    }
+
+    .about .content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    @media (min-width: 1024px) {
+      .about .content {
+        flex-direction: row;
+        align-items: center;
+      }
+      .about .text,
+      .about .video {
+        width: 50%;
+      }
+    }
+
+    .about h2 {
+      color: var(--ecowas-gold);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--ecowas-dark);
+    }
+
+    .about p {
+      color: var(--ecowas-dark);
+      line经销商: 1.75;
+    }
+
+    .about .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--ecowas-gold);
+      color: #000;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      margin-top: 1.5rem;
+      transition: background-color 0.3s;
+    }
+
+    .about .button:hover {
+      background-color: hsl(43, 89%, 35%);
+    }
+
+    .about .video-container {
+      background-color: var(--gray-200);
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-500);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .about video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Language Toggle */
+    .language-toggle {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .language-toggle button {
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background-color: var(--ecowas-gold);
+      color: #000;
+    }
+
+    .language-toggle button.inactive {
+      background-color: var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    /* Slides Section */
+    .slides {
+      padding: 2.5rem 0;
+    }
+
+    .slides h2 {
+      color: var(--ecowas-gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .slides .slide-container {
+      max-width: 48rem;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .slides .slide-content {
+      background-color: var(--gray-100);
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-500);
+      border-radius: 0.375rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .slides .navigation {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .slides .navigation button {
+      background-color: var(--ecowas-gold);
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+
+    /* Call to Action Section */
+    .cta {
+      background: linear-gradient(to right, var(--ecowas-gold), var(--ecowas-navy));
+      color: #fff;
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 1.875rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta p {
+      max-width: 32rem;
+      margin: 0 auto 2rem;
+      font-size: 1.125rem;
+    }
+
+    .cta .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #fff;
+      color: var(--ecowas-navy);
+      padding: 0.75rem 2rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    .cta .button:hover {
+      background-color: hsl(210, 40%, 96.1%);
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(to right, var(--ecowas-gold), var(--ecowas-navy));
+      padding: 1.5rem 0;
+      color: #fff;
+    }
+
+    .footer .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .footer .content {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    .footer .logo-placeholder {
+      width: 40px;
+      height: 40px;
+      background-color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    .footer .logo-placeholder.wb {
+      color: var(--ecowas-navy);
+    }
+
+    .footer .logo-placeholder.ec {
+      color: var(--ecowas-gold);
+    }
+
+    .footer .text {
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 0.875rem;
+      margin: 0;
+    }
+
+    /* Chatbot Styles */
+    .chatbot-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background-color: var(--ecowas-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .chatbot-button svg {
+      width: 24px;
+      height: 24px;
+      stroke: #fff;
+    }
+
+    .chatbot-button:hover {
+      transform: scale(1.1);
+      background-color: hsl(43, 89%, 35%);
+    }
+
+    .chatbot-container {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 350px;
+      height: 500px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+      transform: scale(0);
+      opacity: 0;
+      transform-origin: bottom right;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .chatbot-container.active {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .chatbot-header {
+      background-color: var(--ecowas-gold);
+      padding: 15px 20px;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+    }
+
+    .chatbot-title {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .chatbot-close {
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .chatbot-close svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .chatbot-message {
+      max-width: 80%;
+      padding: 10px 15px;
+      border-radius: 18px;
+      line-height: 1.4;
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .user-message {
+      background-color: var(--gray-100);
+      color: #333;
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+    }
+
+    .bot-message {
+      background-color: var(--ecowas-gold);
+      color: #fff;
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+    }
+
+    .chatbot-input-container {
+      padding: 15px;
+      border-top: 1px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chatbot-input {
+      flex: 1;
+      border: 1px solid #ddd;
+      padding: 10px 15px;
+      border-radius: 25px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .chatbot-input:focus {
+      border-color: var(--ecowas-gold);
+    }
+
+    .chatbot-send {
+      background-color: var(--ecowas-gold);
+      color: #fff;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .chatbot-send:hover {
+      background-color: hsl(43, 89%, 35%);
+    }
+
+    .chatbot-send svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @media (max-width: 576px) {
+      .chatbot-container {
+        width: 90%;
+        height: 70%;
+        bottom: 80px;
+        right: 5%;
+        left: 5%;
+      }
+      .chatbot-button {
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+</style>
+
 </head>
 <body>
     <!-- Header -->
@@ -62,24 +624,51 @@
     </header>
     
     <!-- Main Content -->
-    <main class="main-container" id="home">
-        <h1 class="page-title">Improving Statistics Using AI</h1>
-
-        <!-- About Section -->
-        <div class="avatar-section" id="about">
-            <div class="togo-info">
-                <h2>Unlocking Big Data for ECOWAS: A Transformative Workshop </h2>
-                <p>Discover how Big Data and AI can transform ECOWAS statistics at our University of Johannesburg workshop, led by Prof.
-                     Abejide Ade-Ibijola. Collaborate with experts to build a regional framework, tackle challenges, and drive sustainable
-                      development. Supported by the World Bank's HISWA Project.</p>
-            </div>
-            <div class="video-container">
-                <video src="assets/French_Prof.mp4" class="img-fluid" controls poster="avatar-placeholder.jpg">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+    <section class="hero" id="home">
+        <div class="ecowas-container">
+          <h1>Improving Statistics Using AI</h1>
+          <div class="underline"></div>
         </div>
+      </section>
+    
+      <!-- About Section -->
+      <section id="about" class="about">
+        <div class="ecowas-container">
+          <div class="content">
+            <div class="text">
+              <h2>Unlocking Big Data for ECOWAS: A Transformative Workshop</h2>
+              <p>
+                Discover how Big Data and AI can transform ECOWAS statistics at our University of Johannesburg workshop, led by Prof.
+                Abejide Ade-Ibijola. Collaborate with experts to build a regional framework, tackle challenges, and drive sustainable
+                development. Supported by the World Bank's HISWA Project.
+              </p>
+              <a href="chatbot.html" class="button">
+                <span>Ask our AI Assistant</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m5 11 4-7" />
+                  <path d="m19 11-4-7" />
+                  <path d="M2 11h20" />
+                  <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8c.9 0 1.8-.7 2-1.6l1.7-7.4" />
+                  <path d="m9 11 1 9" />
+                  <path d="M4.5 15.5h15" />
+                  <path d="m15 11-1 9" />
+                </svg>
+              </a>
+            </div>
+            <div class="video">
+              <div class="video-container">
+                <video src="assets/French_Prof.mp4" controls poster="avatar-placeholder.jpg">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
+    <div class="logo-text fw-bold fs-5">
+        Workshop Findings
+    </div>
         <!-- Language Toggle -->
         <div class="language-toggle">
             <button class="btn btn-primary" onclick="showSlides('english')">English</button>
@@ -103,41 +692,51 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-bottom">
-        <img src="assets/Logo1f.png" alt="World bank Logo" class="footer-logo-left">
-        <div class="footer-text">
-          <p>Supported by World Bank</p>
-          <p>& Ecowas © 2025. All rights reserved.</p>
-        </div>
-        <img src="assets/Logo2f.png" alt="Ecowas Logo" class="footer-logo-right">
+</section>
+
+<!-- Call to Action Section -->
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-bottom">
+      <img src="assets/Logo1f.png" alt="World bank Logo" class="footer-logo-left">
+      <div class="footer-text">
+        <p>Supported by World Bank</p>
+        <p>& Ecowas © 2025. All rights reserved.</p>
       </div>
-    </footer>
-
-    <!-- Chat Bot Button -->
-    <div class="chatbot-button" id="chatbotButton" onclick="window.location.href='chatBot.html'">
-        <i class="fas fa-comment-dots"></i>
+      <img src="assets/Logo2f.png" alt="Ecowas Logo" class="footer-logo-right">
     </div>
+  </footer>
 
-    <!-- Chat Bot Dialog -->
-    <div class="chatbot-container" id="chatbotContainer">
-        <div class="chatbot-header">
-            <div class="chatbot-title">Big Data ECOWAS Assistant</div>
-            <button class="chatbot-close" id="chatbotClose">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="chatbot-messages" id="chatbotMessages">
-            <!-- Messages will be inserted here by JavaScript -->
-        </div>
-        <div class="chatbot-input-container">
-            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your question here..." autocomplete="off">
-            <button class="chatbot-send" id="chatbotSend">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
+<!-- Chatbot Button -->
+<div class="chatbot-button" id="chatbotButton" onclick="window.location.href='chatBot.html'">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+  </svg>
+</div>
 
+<!-- Chatbot Container -->
+<div class="chatbot-container" id="chatbotContainer">
+  <div class="chatbot-header">
+    <div class="chatbot-title">Big Data ECOWAS Assistant</div>
+    <button class="chatbot-close" id="chatbotClose">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  <div class="chatbot-messages" id="chatbotMessages"></div>
+  <div class="chatbot-input-container">
+    <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your question here..." autocomplete="off">
+    <button class="chatbot-send" id="chatbotSend">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
+  </div>
+</div>
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
