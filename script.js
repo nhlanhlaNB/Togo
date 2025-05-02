@@ -1,4 +1,3 @@
-
 // Initialize slide state
 let currentLang = 'english';
 let currentSlideIndex = 0;
